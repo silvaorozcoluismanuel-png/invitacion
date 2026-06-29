@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitación de Cumpleaños</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+overflow:hidden;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4,#fad0c4,#ffd1ff);
+}
+
+.globos{
+position:absolute;
+width:100%;
+height:100%;
+overflow:hidden;
+pointer-events:none;
+}
+
+.globo{
+position:absolute;
+bottom:-120px;
+font-size:55px;
+animation:subir linear infinite;
+}
+
+@keyframes subir{
+0%{transform:translateY(0);}
+100%{transform:translateY(-130vh);}
+}
+
+.sobre{
+width:340px;
+height:220px;
+background:#ff5a76;
+border-radius:15px;
+position:relative;
+cursor:pointer;
+box-shadow:0 15px 35px rgba(0,0,0,.3);
+display:flex;
+justify-content:center;
+align-items:center;
+transition:.8s;
+}
+
+.sobre:hover{
+transform:scale(1.03);
+}
+
+.sobre::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+clip-path:polygon(0 0,50% 55%,100% 0);
+background:#ff7f96;
+}
+
+.sobre h1{
+color:white;
+z-index:2;
+font-size:28px;
+text-align:center;
+}
+
+.carta{
+position:absolute;
+width:380px;
+max-width:90%;
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,.4);
+text-align:center;
+transform:scale(0);
+transition:.8s;
+}
+
+.carta h2{
+color:#ff3d6e;
+margin-bottom:15px;
+}
+
+.carta p{
+font-size:19px;
+line-height:1.7;
+color:#444;
+}
+
+.carta h3{
+margin-top:20px;
+color:#ff3d6e;
+}
+
+#confeti{
+position:absolute;
+width:100%;
+height:100%;
+pointer-events:none;
+overflow:hidden;
+}
+
+.papel{
+position:absolute;
+top:-20px;
+width:10px;
+height:15px;
+animation:caer linear forwards;
+}
+
+@keyframes caer{
+to{
+transform:translateY(110vh) rotate(720deg);
+}
+}
+</style>
+
+</head>
+<body>
+
+<div class="globos">
+<div class="globo" style="left:10%;animation-duration:10s;">🎈</div>
+<div class="globo" style="left:25%;animation-duration:12s;">🎈</div>
+<div class="globo" style="left:45%;animation-duration:9s;">🎈</div>
+<div class="globo" style="left:65%;animation-duration:11s;">🎈</div>
+<div class="globo" style="left:85%;animation-duration:13s;">🎈</div>
+</div>
+
+<div id="sobre" class="sobre" onclick="abrir()">
+<h1>💌<br>Abrir Invitación</h1>
+</div>
+
+<div class="carta" id="carta">
+<h2>🎉 ¡Estás Invitado! 🎉</h2>
+
+<p>
+Yo <b>Dylan Emanuel Silva Barbosa</b><br><br>
+
+Tengo el gusto de invitarte a celebrar mi cumpleaños.<br><br>
+
+📅 <b>Sábado 21 de Noviembre</b><br>
+📍 <b>En casa de mis abuelos</b><br><br>
+
+Será un día muy especial y me encantaría contar con tu presencia.<br><br>
+
+🥳 <b>¡No faltes, te esperamos!</b>
+</p>
+
+<h3>🎂🎈🎁</h3>
+
+</div>
+
+<div id="confeti"></div>
+
+<script>
+
+function abrir(){
+
+document.getElementById("sobre").style.display="none";
+
+document.getElementById("carta").style.transform="scale(1)";
+
+for(let i=0;i<180;i++){
+
+let papel=document.createElement("div");
+
+papel.className="papel";
+
+papel.style.left=Math.random()*100+"vw";
+
+papel.style.background=`hsl(${Math.random()*360},100%,50%)`;
+
+papel.style.animationDuration=(2+Math.random()*3)+"s";
+
+document.getElementById("confeti").appendChild(papel);
+
+setTimeout(()=>{
+papel.remove();
+},5000);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
